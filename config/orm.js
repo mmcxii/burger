@@ -21,7 +21,7 @@ const insertOne = (table, newRow) => {
     });
 };
 
-const updateOne = (table, id, column, newVal) => {
+const updateOne = (table, column, id, newVal) => {
     const sql = `UPDATE ${table} SET ${column} = ${newVal} WHERE id = ${id}`;
 
     db.query(sql, (err, res) => {
