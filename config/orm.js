@@ -37,6 +37,4 @@ const updateOne = (id, newVal) => {
     });
 };
 
-updateOne(2, 0);
-
 module.exports = { selectAll, insertOne, updateOne };
