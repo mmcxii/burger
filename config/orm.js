@@ -1,37 +1,31 @@
 const db = require('./connection');
 
-const selectAll = () => {
-    const sql = 'SELECT * FROM burgers';
+const selectAll = (table) => {
+    const sql = `SELECT * FROM ${table}`;
 
     db.query(sql, (err, res) => {
         if (err) throw err;
-
-        console.log(res);
 
         db.end();
     });
 };
 
-const insertOne = (newBurger) => {
-    const sql = `INSERT INTO burgers(name)
-                 VALUES ("${newBurger}")`;
+const insertOne = (table, newRow) => {
+    const sql = `INSERT INTO ${table}(name)
+                 VALUES ("${newRow}")`;
 
     db.query(sql, (err) => {
         if (err) throw err;
 
-        console.log(`${newBurger} successfully inserted into burgers.`);
-
         db.end();
     });
 };
 
-const updateOne = (id, newVal) => {
-    const sql = `UPDATE burgers SET devoured = ${newVal} WHERE id = ${id}`;
+const updateOne = (table, id, column, newVal) => {
+    const sql = `UPDATE ${table} SET ${column} = ${newVal} WHERE id = ${id}`;
 
     db.query(sql, (err, res) => {
         if (err) throw err;
-
-        console.log('Successfully updated burger.');
 
         db.end();
     });
