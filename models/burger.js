@@ -1,9 +1,9 @@
 const { selectAll, insertOne, updateOne } = require('../config/orm');
 
-const selectAllBurgers = () => selectAll('burgers');
+const selectAllBurgers = (callback) => selectAll('burgers', (result) => callback(result));
 
 const insertOneBurger = (newBurger) => insertOne('burgers', newBurger);
 
-const updateOneBurgerDevouered = (id, newVal) => updateOne('burgers', 'devouered', id, newVal);
+const updateOneBurgerDevoured = (id) => updateOne('burgers', 'devoured', id, 1);
 
-module.exports = { selectAllBurgers, insertOneBurger, updateOneBurgerDevouered };
+module.exports = { selectAllBurgers, insertOneBurger, updateOneBurgerDevoured };

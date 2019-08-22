@@ -1,12 +1,16 @@
 const db = require('./connection');
 
-const selectAll = (table) => {
+const selectAll = (table, callback) => {
+    let data;
+
     const sql = `SELECT * FROM ${table}`;
 
     db.query(sql, (err, res) => {
         if (err) throw err;
 
-        db.end();
+        data = res;
+
+        return callback(data);
     });
 };
 
@@ -17,7 +21,7 @@ const insertOne = (table, newRow) => {
     db.query(sql, (err) => {
         if (err) throw err;
 
-        db.end();
+        console.log(`Successfully inserted ${newRow} into ${table}.`);
     });
 };
 
@@ -27,7 +31,7 @@ const updateOne = (table, column, id, newVal) => {
     db.query(sql, (err, res) => {
         if (err) throw err;
 
-        db.end();
+        console.log(`Successfully updated ${table}: ${id} ${column} to ${newVal}`);
     });
 };
 
